@@ -33,6 +33,9 @@ fi
 # Show FIO version
 fio --version
 
+# Show Platform Name
+echo $(onl-platform-show | grep "Platform Name")
+
 # Running Random 4K Testing 
 # Rule:
 # 1. Block size 4k
@@ -41,9 +44,10 @@ fio --version
 
 # Random Read
 function random_read {
+echo "Start Running Random 4k Read Testing"
 fio -filename=${DISK} \
     -direct=1 \
-    -iodepth 128 \
+    -iodepth=128 \
     -thread \
     -rw=randread \
     -ioengine=libaio \
@@ -54,12 +58,14 @@ fio -filename=${DISK} \
     -group_reporting \
     -name=random_read_report \
     > random_read_report_$(date '+%Y%m%d_%H_%M_%S')
+echo
 }
 
 function random_write {
+echo "Start Running Random 4k Write Testing"
 fio -filename=${DISK} \
     -direct=1 \
-    -iodepth 128 \
+    -iodepth=128 \
     -thread \
     -rw=randwrite \
     -ioengine=libaio \
@@ -70,6 +76,7 @@ fio -filename=${DISK} \
     -group_reporting \
     -name=random_write_report \
     > random_write_report_$(date '+%Y%m%d_%H_%M_%S')
+echo
 }
 
 random_read
