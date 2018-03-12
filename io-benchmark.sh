@@ -43,7 +43,7 @@ fio --version
 function random_read {
 fio -filename=${DISK} \
     -direct=1 \
-    -iodepth＝128 \
+    -iodepth 128 \
     -thread \
     -rw=randread \
     -ioengine=libaio \
