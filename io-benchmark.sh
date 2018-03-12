@@ -53,7 +53,7 @@ fio -filename=${DISK} \
     -runtime=120 \
     -group_reporting \
     -name=random_read_report \
-    > random_write_report_$(date '+%Y%m%d_%H_%M_%S')
+    > random_read_report_$(date '+%Y%m%d_%H_%M_%S')
 }
 
 function random_write {
