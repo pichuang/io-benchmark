@@ -16,6 +16,13 @@ set -o nounset
 
 DISK="/dev/sdb"
 
+if which onl-platform-show &> /dev/null;
+then
+    onl-platform-show > onl-platform-show_information
+else
+    echo "Please run the script on ONL"
+fi
+
 # Install fio if not exist
 if ! which fio &> /dev/null; then
     echo "Install Flexible I/O Tester (FIO)"
@@ -26,15 +33,15 @@ fi
 # Show FIO version
 fio --version
 
-# Running Random 4K Testing
+# Running Random 4K Testing 
 # Rule:
 # 1. Block size 4k
 # 2. IO Depth 128
-# 4. Only 4 thread
+# 4. Only 4 thread 
 
 # Random Read
 function random_read {
-fio -filename=$(DISK) \
+fio -filename=${DISK} \
     -direct=1 \
     -iodepth＝128 \
     -thread \
@@ -50,7 +57,7 @@ fio -filename=$(DISK) \
 }
 
 function random_write {
-fio -filename=$(DISK) \
+fio -filename=${DISK} \
     -direct=1 \
     -iodepth 128 \
     -thread \
@@ -67,3 +74,4 @@ fio -filename=$(DISK) \
 
 random_read
 random_write
+
