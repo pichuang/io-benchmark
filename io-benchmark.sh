@@ -21,6 +21,7 @@ then
     onl-platform-show > onl-platform-show_information
 else
     echo "Please run the script on ONL"
+    exit 1
 fi
 
 # Install fio if not exist
