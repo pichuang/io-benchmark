@@ -13,7 +13,10 @@ set -e
 # Fail on unset var usage
 set -o nounset
 
+
 DISK="/dev/sdb"
+echo "Make sure you choose correct disk for testing: ${DISK}"
+
 
 if which onl-platform-show &> /dev/null;
 then
@@ -54,7 +57,6 @@ function random_read {
 
 refresh
 
-echo "Start Running Random 4k Read Testing"
 fio -filename=${DISK} \
     -direct=1 \
     -iodepth=128 \
@@ -75,7 +77,6 @@ function random_write {
 
 refresh
 
-echo "Start Running Random 4k Write Testing"
 fio -filename=${DISK} \
     -direct=1 \
     -iodepth=128 \

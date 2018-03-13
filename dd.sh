@@ -14,6 +14,7 @@ set -o nounset
 
 # Variable
 DISK=/dev/sdb
+echo "Make sure you choose correct disk for testing: ${DISK}"
 
 # Touch a New Report
 REPORT_NAME=dd_report_$(date '+%Y%m%d_%H_%M_%S')
@@ -40,7 +41,6 @@ sleep 1
 # dd if=path/to/input_file of=/path/to/output_file bs=block_size count=number_of_blocks
 
 # Write Testing
-echo "Start Write Speed Testing"
 echo "===================" >> ${REPORT_NAME}
 echo "Write Speed Testing" >> ${REPORT_NAME}
 echo "===================" >> ${REPORT_NAME}
@@ -54,7 +54,6 @@ dd oflag=direct,nonblock \
 echo "" >> ${REPORT_NAME}
 
 # Read Testing
-echo "Start Read Speed Testing"
 echo "==================" >> ${REPORT_NAME}
 echo "Read Speed Testing" >> ${REPORT_NAME}
 echo "==================">> ${REPORT_NAME}
