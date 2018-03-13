@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 # Author: Phil Huang <phil_huang@edge-core.com>
+# The sciprt just use it for developing only.
 
 set -x
 
