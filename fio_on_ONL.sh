@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 
 # Author: Phil Huang <phil_huang@edge-core.com>
-# Support: support@edge-core.com
 
 # References:
 # http://benjr.tw/34632
@@ -37,14 +36,24 @@ fio --version
 # Show Platform Name
 echo $(onl-platform-show | grep "Platform Name")
 
+function refresh {
+    # Clear the memory cache
+    echo "Refresh the memory cache"
+    sync && echo 3 > /proc/sys/vm/drop_caches
+    sleep 1
+}
+
 # Running Random 4K Testing 
 # Rule:
 # 1. Block size 4k
 # 2. IO Depth 128
-# 4. Only 4 thread 
+# 4. Only 4 thread
 
 # Random Read
 function random_read {
+
+refresh
+
 echo "Start Running Random 4k Read Testing"
 fio -filename=${DISK} \
     -direct=1 \
@@ -63,6 +72,9 @@ echo
 }
 
 function random_write {
+
+refresh
+
 echo "Start Running Random 4k Write Testing"
 fio -filename=${DISK} \
     -direct=1 \
